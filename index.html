@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        TUFFBIO - Made by Axol :3
+        Just open source fully customizable bio 
+    -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome replacement for reliability -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Background Elements & Visual Effects -->
+    <canvas id="particles-canvas"></canvas>
+    <div id="custom-cursor"></div>
+    <div id="background-overlay"></div>
+    <div id="grain"></div>
+    <div id="scanlines"></div>
+
+    <!-- Entry Screen -->
+    <div id="entry-screen">
+        <div class="entry-content">
+            <p class="click-text">Click to see my profile</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        <div class="container">
+            <!-- Discord Profile Card -->
+            <div class="glass-card profile-card" id="discord-card">
+                <!-- Banner & Profile Header -->
+                <div class="card-banner"></div>
+                <div class="profile-header">
+                    <div class="avatar-wrapper">
+                        <!-- Avatar source is automatically fetched from Lanyard (Discord API) -->
+                        <img id="discord-avatar" src="" alt="Avatar">
+                        <div id="status-dot" class="offline"></div>
+                    </div>
+                    <div class="header-info">
+                        <div class="username-wrapper">
+                            <h2 id="discord-username">axolek</h2>
+                        </div>
+                        <p id="discord-tag" title="Click to copy">@axol.ofc</p>
+                        <div class="location-box">
+                            <div class="loc-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Warsaw, Poland</span>
+                            </div>
+                            <div class="loc-item clock-item">
+                                <i class="far fa-clock"></i>
+                                <span id="local-time">00:00:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-about">
+                    <p class="about-text"><b>.py .html .css .js .lua .cs .java .cpp</b></p>
+                    <p class="about-subtext">if you want me to code something for you dm i will make you something</p>
+                </div>
+
+                <div class="card-divider"></div>
+
+                <div class="presence-section">
+                    <div id="activity-container" class="activity-box">
+                        <p class="section-title">ACTIVITY</p>
+                        <div class="activity-details">
+                            <p class="activity-name">Currently doing nothing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spotify / Music Integration -->
+                <div id="spotify-presence" class="activity-box hidden">
+                    <p class="section-title">LISTENING TO SPOTIFY</p>
+                    <div class="spotify-info">
+                        <img id="spotify-album-art" src="" alt="Album Art">
+                        <div class="spotify-text">
+                            <p id="spotify-song" class="bold">Song Title</p>
+                            <p id="spotify-artist">Artist Name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Player Widget -->
+            <div class="glass-card player-card">
+                <div class="player-info">
+                    <img src="cover.jpg" alt="Cover" class="player-cover" id="local-cover">
+                    <div class="player-text">
+                        <p id="current-track-name" class="bold">fake ur face</p>
+                        <p id="current-track-artist">s0rrow</p>
+                    </div>
+                    <div class="visualizer" id="visualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                    </div>
+                    <div class="buttons">
+                        <button id="loop-btn" title="Loop"><i class="fas fa-redo"></i></button>
+                        <button id="play-pause-btn" class="main-btn"><i class="fas fa-play"></i></button>
+                        <div class="volume-container">
+                            <i class="fas fa-volume-up"></i>
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                        </div>
+                    </div>
+                </div>
+                <audio id="main-audio" src="music.mp3" loop></audio>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://discord.com/users/1259193637900779591" target="_blank" class="social-item">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="https://github.com/wnuczeq" target="_blank" class="social-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://g4skins.com/ref/axol" target="_blank" class="social-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>G4Skins</span>
+                </a>
+                <a href="https://pirateswap.com/?ref=axol" target="_blank" class="social-item">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <span>PirateSwap</span>
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="view-counter">
+                <i class="fas fa-eye"></i>
+                <span id="view-count">0</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
